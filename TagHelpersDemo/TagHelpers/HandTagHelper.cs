@@ -19,8 +19,10 @@ namespace TagHelpersDemo.TagHelpers
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             // Assign the lowercase version of the player's name to the appropriate context property
-            var handContext = new HandContext();
-            handContext.Player = Player.Trim().ToLower();
+            var handContext = new HandContext()
+            {
+                Player = Player.Trim().ToLower()
+            };
             context.Items.Add(typeof(HandTagHelper), handContext);
 
             output.TagName = "div";

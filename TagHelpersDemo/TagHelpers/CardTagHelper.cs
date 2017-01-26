@@ -34,13 +34,10 @@ namespace TagHelpersDemo.TagHelpers
 
         public CardSuit Suit { get; set; }
 
-        public override void Process(TagHelperContext context, TagHelperOutput output)
+        private (string colorClass, string characterCode) GetSuitAttributes()
         {
-            // Fetch the context, so that we can get the player name to display the appropriate image
-            var handContext = (HandContext)context.Items[typeof(HandTagHelper)];
-
             var suitColorClass = (Suit == CardSuit.Diamond || Suit == CardSuit.Heart) ? "red" : "black";
-            var suitCharacterCode = "";
+            var suitCharacterCode = string.Empty;
 
             switch (Suit)
             {
@@ -58,13 +55,23 @@ namespace TagHelpersDemo.TagHelpers
                     break;
             }
 
+            return (colorClass: suitColorClass, characterCode: suitCharacterCode);
+        }
+
+        public override void Process(TagHelperContext context, TagHelperOutput output)
+        {
+            // Fetch the context, so that we can get the player name to display the appropriate image
+            var handContext = (HandContext)context.Items[typeof(HandTagHelper)];
+
+            var suitAttributes = GetSuitAttributes();
+
             output.TagName = "div";
             output.Attributes.SetAttribute("class", "card col-md-3");
 
             // Try to import a CSHTML file here instead of hard-coding the HTML. See:
             // http://stackoverflow.com/questions/40438054/how-to-render-a-razor-template-inside-a-custom-taghelper-in-asp-net-core
             output.Content.SetHtmlContent(
-                $"<img src=\"images/{handContext.Player}.png\" alt=\"avatar\" class=\"center-block\" /><div class=\"text-center\"><h2 class=\"{suitColorClass}\"><strong>{suitCharacterCode}</strong></h2><p>{Rank}</p></div>");
+                $"<img src=\"images/{handContext.Player}.png\" alt=\"avatar\" class=\"center-block\" /><div class=\"text-center\"><h2 class=\"{suitAttributes.colorClass}\"><strong>{suitAttributes.characterCode}</strong></h2><p>{Rank}</p></div>");
         }
     }
 }

@@ -40,6 +40,23 @@ namespace TagHelpersDemo.TagHelpers
             var handContext = (HandContext)context.Items[typeof(HandTagHelper)];
 
             var suitColorClass = (Suit == CardSuit.Diamond || Suit == CardSuit.Heart) ? "red" : "black";
+            var suitCharacterCode = "";
+
+            switch (Suit)
+            {
+                case CardSuit.Club:
+                    suitCharacterCode = "&clubs;";
+                    break;
+                case CardSuit.Diamond:
+                    suitCharacterCode = "&diams;";
+                    break;
+                case CardSuit.Heart:
+                    suitCharacterCode = "&hearts;";
+                    break;
+                case CardSuit.Spade:
+                    suitCharacterCode = "&spades;";
+                    break;
+            }
 
             output.TagName = "div";
             output.Attributes.SetAttribute("class", "card col-md-3");
@@ -47,7 +64,7 @@ namespace TagHelpersDemo.TagHelpers
             // Try to import a CSHTML file here instead of hard-coding the HTML. See:
             // http://stackoverflow.com/questions/40438054/how-to-render-a-razor-template-inside-a-custom-taghelper-in-asp-net-core
             output.Content.SetHtmlContent(
-                $"<img src=\"images/{handContext.Player}.png\" alt=\"avatar\" /><div class=\"container\"><h4 class=\"{suitColorClass}\"><strong>{Suit}</strong></h4><p>{Rank}</p></div>");
+                $"<img src=\"images/{handContext.Player}.png\" alt=\"avatar\" class=\"center-block\" /><div class=\"text-center\"><h2 class=\"{suitColorClass}\"><strong>{suitCharacterCode}</strong></h2><p>{Rank}</p></div>");
         }
     }
 }

@@ -1,25 +1,25 @@
 ﻿<Project ToolsVersion="15.0" Sdk="Microsoft.NET.Sdk.Web">
-    <PropertyGroup>
-        <TargetFramework>netcoreapp1.1</TargetFramework>
-        <MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>
-    </PropertyGroup>
-    <PropertyGroup>
-        <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
-    </PropertyGroup>
-    <ItemGroup>
-        <Compile Update="Views\Shared\Partials\CardViewModel.cs" DependentUpon="Views\Shared\Partials\_Card.cshtml" />
-    </ItemGroup>
-    <ItemGroup>
-        <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
-        <PackageReference Include="Microsoft.AspNetCore" Version="1.1.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.ViewCompilation" Version="1.1.0-msbuild3-final" PrivateAssets="All" />
-        <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.0" />
-        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.0" />
-        <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.0" />
-        <PackageReference Include="System.ValueTuple" Version="4.3.0" />
-    </ItemGroup>
-    <ItemGroup>
-        <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0-msbuild3-final" />
-    </ItemGroup>
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Update="Views\Shared\Partials\CardViewModel.cs" DependentUpon="Views\Shared\Partials\_Card.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.ViewCompilation" Version="1.1.0-msbuild3-final" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.0" />
+    <PackageReference Include="System.ValueTuple" Version="4.3.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0-msbuild3-final" />
+  </ItemGroup>
 </Project>

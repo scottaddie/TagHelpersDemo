@@ -1,10 +1,21 @@
-﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.AspNetCore.Razor.TagHelpers;
+using System.Threading.Tasks;
+using TagHelpersDemo.Views.Shared.Partials;
 
 namespace TagHelpersDemo.TagHelpers
 {
     [HtmlTargetElement("card", ParentTag = "hand", Attributes = nameof(Suit) + "," + nameof(Rank), TagStructure = TagStructure.NormalOrSelfClosing)]
     public class CardTagHelper : TagHelper
     {
+        private readonly IHtmlHelper _html;
+
+        public CardTagHelper(IHtmlHelper htmlHelper)
+        {
+            _html = htmlHelper;
+        }
+
         public enum CardSuit
         {
             Club = 0,
@@ -34,6 +45,10 @@ namespace TagHelpersDemo.TagHelpers
 
         public CardSuit Suit { get; set; }
 
+        [HtmlAttributeNotBound]
+        [ViewContext]
+        public ViewContext ViewContext { get; set; }
+
         private (string colorClass, string characterCode) GetSuitAttributes()
         {
             var suitColorClass = (Suit == CardSuit.Diamond || Suit == CardSuit.Heart) ? "red" : "black";
@@ -58,8 +73,11 @@ namespace TagHelpersDemo.TagHelpers
             return (colorClass: suitColorClass, characterCode: suitCharacterCode);
         }
 
-        public override void Process(TagHelperContext context, TagHelperOutput output)
+        public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
+            // Contextualize the HTML helper
+            (_html as IViewContextAware).Contextualize(ViewContext);
+
             // Fetch the context, so that we can get the player name to display the appropriate image
             var handContext = (HandContext)context.Items[typeof(HandTagHelper)];
 
@@ -68,10 +86,15 @@ namespace TagHelpersDemo.TagHelpers
             output.TagName = "div";
             output.Attributes.SetAttribute("class", "card col-md-3");
 
-            // Try to import a CSHTML file here instead of hard-coding the HTML. See:
-            // http://stackoverflow.com/questions/40438054/how-to-render-a-razor-template-inside-a-custom-taghelper-in-asp-net-core
-            output.Content.SetHtmlContent(
-                $"<img src=\"images/{handContext.Player}.png\" alt=\"avatar\" class=\"center-block\" /><div class=\"text-center\"><h2 class=\"{suitAttributes.colorClass}\"><strong>{suitAttributes.characterCode}</strong></h2><p>{Rank}</p></div>");
+            var model = new CardViewModel
+            {
+                PlayerName = handContext.Player,
+                Rank = Rank.ToString(),
+                SuitCharacterCode = suitAttributes.characterCode,
+                SuitColorClass = suitAttributes.colorClass
+            };
+            var content = await _html.PartialAsync("~/Views/Shared/Partials/_Card.cshtml", model);
+            output.Content.SetHtmlContent(content);
         }
     }
 }

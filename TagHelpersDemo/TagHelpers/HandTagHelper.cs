@@ -18,7 +18,7 @@ namespace TagHelpersDemo.TagHelpers
             // Assign the lowercase version of the player's name to the appropriate context property
             var handContext = new HandContext
             {
-                Player = Player.Trim().ToLower()
+                Player = Player?.Trim().ToLower()
             };
             context.Items.Add(typeof(HandTagHelper), handContext);
 

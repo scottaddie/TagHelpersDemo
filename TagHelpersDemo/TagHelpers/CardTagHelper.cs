@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using System;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System.Threading.Tasks;
@@ -68,6 +69,8 @@ namespace TagHelpersDemo.TagHelpers
                 case CardSuit.Spade:
                     suitCharacterCode = "&spades;";
                     break;
+                default:
+                    throw new IndexOutOfRangeException($"Invalid suit {Suit} detected");
             }
 
             return (colorClass: suitColorClass, characterCode: suitCharacterCode);

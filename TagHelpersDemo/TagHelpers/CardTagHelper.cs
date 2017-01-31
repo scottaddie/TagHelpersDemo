@@ -1,8 +1,8 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System.Threading.Tasks;
+using TagHelpersDemo.Services;
 using TagHelpersDemo.Views.Shared.Partials;
 
 namespace TagHelpersDemo.TagHelpers
@@ -10,11 +10,14 @@ namespace TagHelpersDemo.TagHelpers
     [HtmlTargetElement(Constants.CARD_TAG_HELPER_ELEMENT_NAME, ParentTag = Constants.HAND_TAG_HELPER_ELEMENT_NAME, Attributes = nameof(Suit) + "," + nameof(Rank), TagStructure = TagStructure.NormalOrSelfClosing)]
     public class CardTagHelper : TagHelper
     {
+        private readonly ICardSuitService _suitService;
         private readonly IHtmlHelper _html;
 
-        public CardTagHelper(IHtmlHelper htmlHelper)
+        public CardTagHelper(IHtmlHelper htmlHelper,
+                             ICardSuitService suitService)
         {
             _html = htmlHelper;
+            _suitService = suitService;
         }
 
         public enum CardSuit
@@ -50,32 +53,6 @@ namespace TagHelpersDemo.TagHelpers
         [ViewContext]
         public ViewContext ViewContext { get; set; }
 
-        private (string colorClass, string characterCode) GetSuitAttributes()
-        {
-            var suitColorClass = (Suit == CardSuit.Diamond || Suit == CardSuit.Heart) ? "red" : "black";
-            var suitCharacterCode = string.Empty;
-
-            switch (Suit)
-            {
-                case CardSuit.Club:
-                    suitCharacterCode = "&clubs;";
-                    break;
-                case CardSuit.Diamond:
-                    suitCharacterCode = "&diams;";
-                    break;
-                case CardSuit.Heart:
-                    suitCharacterCode = "&hearts;";
-                    break;
-                case CardSuit.Spade:
-                    suitCharacterCode = "&spades;";
-                    break;
-                default:
-                    throw new IndexOutOfRangeException($"Invalid suit {Suit} detected");
-            }
-
-            return (colorClass: suitColorClass, characterCode: suitCharacterCode);
-        }
-
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
             // Contextualize the HTML helper
@@ -84,7 +61,7 @@ namespace TagHelpersDemo.TagHelpers
             // Fetch the context, so that we can get the player name to display the appropriate image
             var handContext = (HandContext)context.Items[typeof(HandTagHelper)];
 
-            var suitAttributes = GetSuitAttributes();
+            var suitAttributes = _suitService.GetSuitAttributes(Suit);
 
             output.TagName = "div";
             output.Attributes.SetAttribute("class", "card col-md-3");

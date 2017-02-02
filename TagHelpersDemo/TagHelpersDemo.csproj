@@ -7,7 +7,7 @@
     <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Update="Views\Shared\Partials\CardViewModel.cs" DependentUpon="Views\Shared\Partials\_Card.cshtml" />
+    <Compile Update="Views\Shared\Partials\CardViewModel.cs" DependentUpon="_Card.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />

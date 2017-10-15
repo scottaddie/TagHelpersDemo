@@ -12,8 +12,6 @@
     <ProjectReference Include="..\TagHelpersDemo\TagHelpersDemo.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="xunit.runner.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <Content Include="xunit.runner.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>

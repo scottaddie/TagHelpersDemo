@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.3
+VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TagHelpersDemo", "TagHelpersDemo\TagHelpersDemo.csproj", "{80740094-FF91-4B72-96C5-B3FFF518C04A}"
 EndProject
@@ -9,10 +9,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		.gitignore = .gitignore
+		global.json = global.json
 		NuGet.Config = NuGet.Config
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TagHelpersDemo.Tests", "TagHelpersDemo.Tests\TagHelpersDemo.Tests.csproj", "{2F65E636-C00D-44C5-AD4B-E9C92129E22D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TagHelpersDemo.Tests", "TagHelpersDemo.Tests\TagHelpersDemo.Tests.csproj", "{2F65E636-C00D-44C5-AD4B-E9C92129E22D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,5 +52,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F40B4D72-996E-43E6-8751-F129258A3130}
 	EndGlobalSection
 EndGlobal

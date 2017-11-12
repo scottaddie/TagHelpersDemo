@@ -7,7 +7,10 @@ using TagHelpersDemo.Views.Shared.Partials;
 
 namespace TagHelpersDemo.TagHelpers
 {
-    [HtmlTargetElement(Constants.CARD_TAG_HELPER_ELEMENT_NAME, ParentTag = Constants.HAND_TAG_HELPER_ELEMENT_NAME, Attributes = nameof(Suit) + "," + nameof(Rank), TagStructure = TagStructure.NormalOrSelfClosing)]
+    [HtmlTargetElement(Constants.CARD_TAG_HELPER_ELEMENT_NAME, 
+        ParentTag = Constants.HAND_TAG_HELPER_ELEMENT_NAME, 
+        Attributes = nameof(Suit) + "," + nameof(Rank), 
+        TagStructure = TagStructure.NormalOrSelfClosing)]
     public class CardTagHelper : TagHelper
     {
         private readonly ICardSuitService _suitService;

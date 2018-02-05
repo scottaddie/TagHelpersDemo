@@ -1,6 +1,6 @@
 @model TagHelpersDemo.Views.Shared.Partials.CardViewModel
 
-<img src="images/@(Model.PlayerName).png" alt="avatar" class="center-block" />
+<img src="images/@(Model.PlayerName).png" alt="@(Model.PlayerName) avatar" class="center-block" />
 <div class="text-center">
     <h2 class="@Model.SuitColorClass">
         <strong>@Html.Raw(Model.SuitCharacterCode)</strong>

@@ -1,19 +1,17 @@
-﻿@using static TagHelpersDemo.TagHelpers.CardTagHelper
-
-@{
+﻿@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="clearfix">&nbsp;</div>
 
 <hand player="John">
-    <card suit="@CardSuit.Heart" rank="@CardRank.Ace"></card>
-    <card suit="@CardSuit.Club" rank="@CardRank.Eight"></card>
-    <card suit="@CardSuit.Diamond" rank="@CardRank.Jack"></card>
+    <card suit="Heart" rank="Ace"></card>
+    <card suit="Club" rank="Eight"></card>
+    <card suit="Diamond" rank="Jack"></card>
 </hand>
 
 <hand player="Jane">
-    <card suit="@CardSuit.Spade" rank="@CardRank.Four"></card>
-    <card suit="@CardSuit.Heart" rank="@CardRank.Queen"></card>
-    <card suit="@CardSuit.Heart" rank="@CardRank.Seven"></card>
+    <card suit="Spade" rank="Four"></card>
+    <card suit="Heart" rank="Queen"></card>
+    <card suit="Heart" rank="Seven"></card>
 </hand>

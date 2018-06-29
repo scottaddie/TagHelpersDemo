@@ -1,2 +1,3 @@
 # TagHelpersDemo
-An ASP.NET Core MVC application demonstrating the use of tag helpers
+
+An ASP.NET Core MVC app demonstrating the use of [Tag Helpers](https://docs.microsoft.com/aspnet/core/mvc/views/tag-helpers/intro)

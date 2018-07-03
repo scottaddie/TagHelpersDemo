@@ -4,9 +4,6 @@
     <ProjectUISubcaption>.NET Core 2.1</ProjectUISubcaption>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Update="Views\Shared\Partials\CardViewModel.cs" DependentUpon="_Card.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 </Project>

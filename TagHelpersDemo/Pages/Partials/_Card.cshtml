@@ -1,0 +1,9 @@
+@model TagHelpersDemo.ViewModels.CardViewModel
+
+<img src="images/@(Model.PlayerName).png" alt="@(Model.PlayerName) avatar" class="center-block" />
+<div class="text-center">
+    <h2 class="@Model.SuitColorClass">
+        <strong>@Html.Raw(Model.SuitCharacterCode)</strong>
+    </h2>
+    <p>@Model.Rank</p>
+</div>

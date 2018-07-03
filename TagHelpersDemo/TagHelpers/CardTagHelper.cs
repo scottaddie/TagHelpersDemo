@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System.Threading.Tasks;
 using TagHelpersDemo.Services;
-using TagHelpersDemo.Views.Shared.Partials;
+using TagHelpersDemo.ViewModels;
 
 namespace TagHelpersDemo.TagHelpers
 {
@@ -76,7 +76,7 @@ namespace TagHelpersDemo.TagHelpers
                 SuitCharacterCode = suitAttributes.characterCode,
                 SuitColorClass = suitAttributes.colorClass
             };
-            var content = await _html.PartialAsync("~/Views/Shared/Partials/_Card.cshtml", model);
+            var content = await _html.PartialAsync("~/Pages/Partials/_Card.cshtml", model);
             output.Content.SetHtmlContent(content);
         }
     }

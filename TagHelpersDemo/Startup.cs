@@ -29,11 +29,9 @@ namespace TagHelpersDemo
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
-                app.UseHsts();
+                app.UseExceptionHandler("/Error");
             }
 
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseMvc();
         }

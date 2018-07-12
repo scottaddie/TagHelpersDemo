@@ -18,7 +18,8 @@ namespace TagHelpersDemo
         {
             services.AddTransient<ICardSuitService, CardSuitService>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc()
+                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

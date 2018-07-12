@@ -7,7 +7,6 @@ namespace TagHelpersDemo.Services
     {
         public (string colorClass, string characterCode) GetSuitAttributes(CardSuit suit)
         {
-            var suitColorClass = (suit == CardSuit.Diamond || suit == CardSuit.Heart) ? "red" : "black";
             var suitCharacterCode = string.Empty;
 
             switch (suit)
@@ -28,7 +27,13 @@ namespace TagHelpersDemo.Services
                     throw new IndexOutOfRangeException($"Invalid suit {suit} detected");
             }
 
-            return (colorClass: suitColorClass, characterCode: suitCharacterCode);
+            var suitColorClass = (suit == CardSuit.Diamond || 
+                                  suit == CardSuit.Heart) ? "red" : "black";
+
+            return (
+                colorClass: suitColorClass,
+                characterCode: suitCharacterCode
+            );
         }
     }
 }

@@ -15,7 +15,8 @@ namespace TagHelpersDemo.TagHelpers
     {
         public string Player { get; set; }
 
-        public override void Process(TagHelperContext context, TagHelperOutput output)
+        public override void Process(TagHelperContext context, 
+                                     TagHelperOutput output)
         {
             var handContext = new HandContext
             {
